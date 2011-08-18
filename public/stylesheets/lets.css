@@ -1,0 +1,42 @@
+#maintitle {
+    font-size: 32px;
+    padding: 2em;
+}
+#bd{
+    background: #D8CAA8;
+}
+#hd {
+    background: #D8CAA8;
+}
+#nav {
+    background: #5C832F;
+    overflow: auto;
+}
+#nav ul li {
+    background: #5C832F;
+    list-style: none;
+    float: left;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-size: 14px;
+}
+#acttabs {
+    float: left;
+}
+#authtabs {
+    float: right;
+}
+#tabber {
+	background-color: #5C832F;
+}
+#tabber #current {
+    background: #D8CAA8;
+}
+#tabber #current a {
+    color: #5C832F;
+}
+#tabber ul li a {
+    color: #D8CAA8;
+}
