@@ -1,0 +1,10 @@
+%h1
+  = "My Offers"
+= render :partial => "products/products", :locals => { :products => @user.products }
+%div{ :class => "userproducts", :id => "parent-#{@user.id}" }
+  = fields_for :userproducts do |userproduct_form|
+    = render :partial => "products/offer", :locals => { :f => userproduct_form, :userproduct => userproduct_form.object }
+  %div{ :id => "new-userproducts"}
+  %p
+    %a{ :href=> '#', :class=>'userproduct-add' }
+      Add an offer

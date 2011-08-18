@@ -1,0 +1,18 @@
+%h1
+  = "Listing " + @users.length.to_s + " user profiles"
+%table
+  %tr
+    %th
+      Username
+    %th
+      Balance
+    %th
+      Status
+  - @users.each do |user|
+    %tr
+      %td
+        = link_to user.username, :controller => :users, :action => :show, :id => user.id
+      %td
+        = h user.balance
+      %td
+        = h user.balance_status

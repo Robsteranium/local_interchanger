@@ -1,0 +1,11 @@
+%h1
+  = "My Balance"
+%h2
+  Account Overview
+%p
+  = "Your balance is M&#163; #{@user.balance}".html_safe
+%p
+  = "Your account is in #{@user.balance_status}."
+%h2
+  Transactions Statement
+  = render :partial => "users/balance"

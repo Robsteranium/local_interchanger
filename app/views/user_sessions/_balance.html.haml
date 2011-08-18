@@ -1,0 +1,60 @@
+%h1
+  = "Balance for #{@user.username}"
+%h2
+  Purchases
+- unless @user.purchases.empty?
+  %table
+    %thead
+      %tr
+        %th
+          Seller
+        %th
+          Product
+        %th
+          Value
+        %th
+          Date
+    %tbody
+      - @user.purchases.each do |purchase|
+        %tr
+          %td
+            = purchase.seller.username
+          %td
+            = purchase.product.title
+          %td
+            = purchase.value
+          %td
+            = purchase.date_exchanged
+- else
+ No purchases recorded.
+%h2
+  Sales
+- unless @user.purchases.empty?
+  %table
+    %thead
+      %tr
+        %th
+          Buyer
+        %th
+          Product
+        %th
+          Value
+        %th
+          Date
+    %tbody
+      - @user.sales.each do |sale|
+        %tr
+          %td
+            = sale.buyer.username
+          %td
+            = sale.product.title
+          %td
+            = sale.value
+          %td
+            = sale.date_exchanged
+- else
+ No sales recorded.
+%h3
+  Balance
+%p
+  = "#{@user.username}'s balance is M£ #{@user.balance}"

@@ -1,0 +1,12 @@
+=# needs an overhaul to remove userproduct!
+%div{ :class => 'userproduct', :id => f.id }
+  = f.hidden_field :id
+  = f.label "product id"
+  = f.text_field :product_id
+  = f.label "user to id"
+  = f.text_field :user_to
+  = f.label "user from id"
+  = f.text_field :user_from
+  %p
+    %a{ :href=> '#', :class=>'userproduct-remove' }
+      Remove the above offer

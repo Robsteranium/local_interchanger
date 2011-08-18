@@ -1,0 +1,6 @@
+%h2
+  Top Trades
+%ul
+  - @trades.each do |t|
+    %li
+      = t.buyer.name + " bought " + t.product.title + " from " + t.seller.name

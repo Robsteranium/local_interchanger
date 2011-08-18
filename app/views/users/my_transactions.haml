@@ -1,0 +1,86 @@
+%h1
+  = "My Transactions"
+%p
+  This page shows transactions that haven't been confirmed.
+%p
+  Your 
+  = link_to "balance", :my_balance
+  shows confirmed transactions.
+%h2
+  Purchases
+- unless @user.ppurchases.empty?
+  %table
+    %thead
+      %tr
+        %th
+        %th
+          Seller
+        %th
+          Product
+        %th
+          Value
+        %th
+          Status
+        %th
+          Date
+    %tbody
+      - @user.purchases.each do |purchase|
+        =# %tr{ :onclick => "location.href='#{transaction_path(purchase)}'",  }
+        %tr
+          %td
+            = link_to "View transaction", purchase
+          %td
+            = purchase.seller.username
+          %td
+            = purchase.product.title
+          %td
+            = number_to_currency(purchase.value, :unit => "m£")
+          %td
+            = purchase.status
+          %td
+            = purchase.date_exchanged
+- else
+  %p
+    No purchases in progress.
+%h2
+  Sales
+- unless @user.psales.empty?
+  %table
+    %thead
+      %tr
+        %th
+        %th
+          Buyer
+        %th
+          Product
+        %th
+          Value
+        %th
+          Status
+        %th
+          Date
+    %tbody
+      - @user.sales.each do |sale|
+        %tr
+          %td
+            = link_to "View transaction", sale
+          %td
+            = link_to sale.buyer.username, sale.buyer
+          %td
+            = link_to sale.product.title, sale.product
+          %td
+            = number_to_currency(sale.value, :unit => "m£")
+          %td
+            = sale.status
+          %td
+            = sale.date_exchanged
+            
+      %tr
+        %td
+        %td
+          Total Sales
+        %td
+          = number_to_currency(@user.credit, :unit => "m£")
+- else
+  %p
+    No sales in progress.

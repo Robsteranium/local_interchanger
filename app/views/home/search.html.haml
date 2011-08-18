@@ -1,0 +1,12 @@
+%h1
+  Search
+= form_tag({:action => "search"} )
+%div
+  %p
+    Begin typing to search for users or products.
+  %label
+    Search:
+  = text_field_tag :searchtext
+  = image_tag( "spinner.gif", :id => "spinner", :style => "display:none;" )
+= observe_field(:searchtext, :frequency => 2, :update => :search_hits, :url => { :action => :searchResults }, :with => :searchtext, :before => "Element.show('spinner');", :success => "Element.hide('spinner');", :condition => "value != ''")
+#search_hits

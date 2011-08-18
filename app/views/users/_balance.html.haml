@@ -1,0 +1,74 @@
+%h2
+  = "Balance for #{@user.username}"
+%h3
+  Purchases
+- unless @user.purchases.empty?
+  %table
+    %thead
+      %tr
+        %th
+          Seller
+        %th
+          Product
+        %th
+          Value
+        %th
+          Date
+    %tbody
+      - @user.purchases.each do |purchase|
+        %tr
+          %td
+            = link_to purchase.seller.username, purchase.seller
+          %td
+            = link_to purchase.product.title, purchase.product
+          %td
+            = number_to_currency(purchase.value, :unit => "m£")
+          %td
+            = purchase.date_exchanged
+      %tr
+        %td
+        %td
+          Total Purchases
+        %td
+          = number_to_currency(@user.commitment, :unit => "m£")
+- else
+  %p
+    No purchases recorded.
+%h3
+  Sales
+- unless @user.sales.empty?
+  %table
+    %thead
+      %tr
+        %th
+          Buyer
+        %th
+          Product
+        %th
+          Value
+        %th
+          Date
+    %tbody
+      - @user.sales.each do |sale|
+        %tr
+          %td
+            = link_to sale.buyer.username, sale.buyer
+          %td
+            = link_to sale.product.title, sale.product
+          %td
+            = number_to_currency(sale.value, :unit => "m£")
+          %td
+            = sale.date_exchanged
+      %tr
+        %td
+        %td
+          Total Sales
+        %td
+          = number_to_currency(@user.credit, :unit => "m£")
+- else
+  %p
+    No sales recorded.
+%h3
+  Balance
+%p
+  = "#{@user.username}'s balance is #{number_to_currency(@user.balance, :unit => "m£")}"

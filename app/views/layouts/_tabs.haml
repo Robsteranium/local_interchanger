@@ -1,0 +1,9 @@
+#tabber
+  - tabs = [  |
+    {:name => 'Offers', :options => { :controller => 'products', :action => :all_offers }},  |
+    {:name => 'Requests', :options => { :controller => 'products', :action => :all_requests }},  |
+    {:name => 'Users', :options => { :controller => 'users', :action => :index } },  |
+    {:name => 'Search', :options => { :controller => 'home', :action => 'search' } } ]
+  %ul
+    - tabs.each do |t|
+      = make_tab t

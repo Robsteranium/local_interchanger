@@ -1,0 +1,6 @@
+#h1
+  Home
+%h2
+  Last 5 Transactions
+%div
+  = render :partial => "toptrades", :locals => { :trades => @trades }

@@ -1,0 +1,15 @@
+%h1
+  = "My Requests"
+- form_for current_user do |f|
+  = f.error_messages
+  %table
+    %tr
+      %th
+        Product
+      %th
+        Fee
+      %th
+        Remove?
+    - f.fields_for :products do |b|
+      = render "products/request", :b => b
+  = f.submit "Save"

@@ -1,0 +1,69 @@
+:javascript
+  $j(document).ready(function() {
+    $j(".edit_textfield").each( function() {
+      $j(this).editable('set_value', {
+        tooltip     :   'Click to edit',
+        type        :   'text',
+        submit      :   'OK'
+      });
+    });
+  });
+#h1
+  Transaction
+%p
+  %strong
+    Buyer
+  %div
+    = @transaction.buyer.name
+%p
+  %strong
+    Seller
+  %div
+    = @transaction.seller.name
+%p
+  %strong
+    Product
+  %div
+    = @transaction.product.title
+%p
+  %strong
+    Price
+  %div{:class => "edit_textfield", :id => @transaction.id, :name => "tvalue" }
+    = @transaction.value || "Click here to set a value for this transaction"
+#h2
+  Messages
+%p
+  Click here to send message...
+%p
+  Msg
+  Msg
+  Msg
+#h2
+  Status
+%p
+  - case @transaction.status
+    - when "new"
+      = "Waiting for #{@transaction.seller.name} to agree to provide #{@transaction.product.title}."
+    - when "agreed"
+      = "Waiting for #{@transaction.buyer.name} to confirm receipt of #{@transaction.product.title}."
+    - when "cancelled"
+      = "#{@transaction.seller.name} has cancelled."
+    - when "confirmed"
+      = "The transaction is complete"
+    - when "disputed"
+      = "#{@transaction.buyer.name} has disputed the transaction."
+#h2
+  Action
+%p
+  - case @transaction.status
+    - when "new"
+      - if current_user == @transaction.seller
+        = link_to "Agree to trade", { :controller => :transactions, :action => :agree_trade, :id => @transaction.id }
+        = link_to "Cancel trade", { :controller => :transactions, :action => :cancel_trade, :id => @transaction.id }
+    - when "agreed"
+      - if current_user == @transaction.buyer
+        = link_to "Confirm transfer", { :controller => :transactions, :action => :confirm_transfer, :id => @transaction.id }
+        = link_to "Dispute transfer", { :controller => :transactions, :action => :dispute_transfer, :id => @transaction.id }
+    - when "cancelled"
+    - when "confirmed"
+    - when "disputed"

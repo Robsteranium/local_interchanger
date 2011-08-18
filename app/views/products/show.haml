@@ -1,0 +1,29 @@
+%h2
+  = @product.title
+%p
+  = @product.description
+%div
+  - if current_user
+    - unless @product.sellers.empty?
+      %p
+        Request this product from
+        %ul
+          - @product.sellers.each do |seller|
+            %li
+              = link_to seller.name, { :controller => :transactions, :action => :initiate_trade, :transaction_data => {:user_to => current_user.id, :user_from => seller.id, :product_id => @product.id } }
+    - else
+      %p
+        Nobody is offering to sell this product.
+    - unless @product.buyers.empty?
+      %p
+        Offer this product to
+        %ul
+          - @product.buyers.each do |buyer|
+            %li
+              = link_to buyer.name, { :controller => :transactions, :action => :initiate_trade, :transaction_data => {:user_from => current_user.id, :user_to => buyer.id, :product_id => @product.id } }
+    - else
+      %p
+        Nobody is requesting this product.    
+  - else
+    %p
+      You must be logged in to request or offer this product.

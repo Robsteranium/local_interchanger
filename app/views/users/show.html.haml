@@ -1,0 +1,11 @@
+%h1
+  = h @user.username + "'s Profile"
+%h2
+  Offers
+= render :partial => "products/products", :locals => { :products => @user.products }
+%h2
+  Requests
+=# render :partial => "products/products", :locals => { :userproducts => @user.requests }
+%h2
+  Transactions Statement
+  = render :partial => "users/balance"

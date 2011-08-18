@@ -1,0 +1,22 @@
+- unless products.nil? || products.empty?
+  %table
+    %tr
+      %th
+        Product
+      %th
+        Fee
+      %th
+        Offered By
+    - products.each do |p|
+      %tr
+        %td
+          = link_to p.title, p
+        %td
+          = p.fee
+        %td
+          = link_to p.user.username, p.user
+          =# link_to "a", up
+          =# link_to 'Remove', user_userproduct_path(current_user, up), :confirm => 'Are you sure?', :method => :delete
+- else
+  %p
+    No products to display.
