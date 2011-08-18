@@ -1,6 +1,6 @@
 #Local Interchanger
 
-##Intro
+##Summary
 This is a rails app that facilitates trade in a Local Exchange Trading System.
 It's pretty alpha at the minute!
 
